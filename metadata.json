@@ -1,0 +1,7 @@
+{
+  "name": "Spell Agency",
+  "description": "A pixel-perfect landing page for an AI Agency featuring a vibrant aurora design and an integrated Gemini AI solution consultant.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

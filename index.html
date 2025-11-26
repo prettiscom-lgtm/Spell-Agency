@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spell Agency - AI Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Importing Inter. Pixelify Sans kept for legacy reference but not used. -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              pixel: ['Inter', 'sans-serif'], // Remapped to Inter for modern look
+            },
+            colors: {
+              brand: {
+                yellow: '#FFF7AD',
+                orange: '#FFA96B',
+                blue: '#A0D8EF',
+                dark: '#111111',
+                purple: '#E0C3FC',
+              }
+            },
+            animation: {
+              'blob': 'blob 10s infinite',
+              'fadeIn': 'fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'slideUp': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'cursor': 'cursor .75s step-end infinite',
+              'marquee': 'marquee 25s linear infinite',
+            },
+            keyframes: {
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              cursor: {
+                '0%, 100%': { opacity: '1' },
+                '50%': { opacity: '0' },
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-100%)' },
+              }
+            },
+            backgroundImage: {
+              'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        background-color: #ffffff;
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
+      
+      /* Cinematic Grain Overlay */
+      .bg-noise {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.4;
+        background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%221%22/%3E%3C/svg%3E');
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e5e7eb; 
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #9ca3af; 
+      }
+      
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+
+      /* AI Mode Overrides - Dark Mode Theme */
+      .dark body {
+        background-color: #000000;
+        color: #e0e0e0;
+      }
+      
+      .dark .bg-white {
+        background-color: #0a0a0a !important;
+        border-color: #333 !important;
+      }
+      
+      .dark .text-black {
+        color: #A0D8EF !important; /* Brand Blue for emphasis */
+      }
+      
+      .dark .text-gray-500, .dark .text-gray-600, .dark .text-gray-800 {
+        color: #888 !important;
+      }
+
+      /* Removed pixel font override for headings */
+      .dark h1, .dark h2, .dark h3, .dark h4, .dark button {
+         letter-spacing: -0.02em; /* Tighter tracking for Inter */
+      }
+      
+      .dark .bg-gray-50 {
+        background-color: #111 !important;
+        border-color: #222 !important;
+      }
+
+      .dark nav div {
+        background: rgba(0,0,0,0.8) !important;
+        border-color: #333 !important;
+      }
+
+      /* Neon Glows for AI Mode */
+      .dark button.bg-black {
+        background-color: #A0D8EF !important;
+        color: black !important;
+        box-shadow: 0 0 15px rgba(160, 216, 239, 0.4);
+      }
+      
+      .dark button.bg-black:hover {
+        background-color: #fff !important;
+      }
+
+      .dark .glass-panel {
+        background: rgba(0, 0, 0, 0.8) !important;
+        border: 1px solid #333;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div class="bg-noise"></div>
+    <div id="root"></div>
+  </body>
+</html>
