@@ -15,7 +15,7 @@ interface Props {
   currentPage: Page;
   isDarkMode: boolean;
   onToggleDarkMode: () => void;
-  onOpenCallModal: () => void; // Used for voice now
+  onOpenCallModal: () => void; 
 }
 
 const Navbar: React.FC<Props> = ({ onNavigate, currentPage, isDarkMode, onToggleDarkMode, onOpenCallModal }) => {
@@ -49,47 +49,47 @@ const Navbar: React.FC<Props> = ({ onNavigate, currentPage, isDarkMode, onToggle
   };
 
   return (
-    <nav className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-      <div className="pointer-events-auto flex items-center gap-3">
+    <nav className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <div className="pointer-events-auto flex items-center gap-2 md:gap-3 max-w-full">
         
         {/* Left: Logo */}
         <button 
           onClick={handleLogoClick}
           onMouseEnter={playHover}
-          className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-sm rounded-full h-12 px-4 flex items-center justify-center transition-all duration-500 hover:scale-105 group"
+          className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-sm rounded-full h-10 md:h-12 px-3 md:px-4 flex items-center justify-center transition-all duration-500 hover:scale-105 group"
         >
-          <div className="w-6 h-6 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center transition-transform duration-500 group-hover:rotate-180">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center transition-transform duration-500 group-hover:rotate-180">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
             </svg>
           </div>
-          <span className="ml-2 font-sans font-bold text-base text-black dark:text-white hidden sm:block tracking-tight">Spell</span>
+          <span className="ml-2 font-sans font-bold text-sm md:text-base text-black dark:text-white hidden sm:block tracking-tight">Spell</span>
         </button>
 
-        {/* Center: Navigation */}
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-sm rounded-full h-12 px-6 flex items-center gap-6 transition-all duration-500">
+        {/* Center: Navigation - Scrollable on mobile */}
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-sm rounded-full h-10 md:h-12 px-4 md:px-6 flex items-center gap-3 md:gap-6 transition-all duration-500 overflow-x-auto no-scrollbar max-w-[200px] sm:max-w-none">
           {navItems.map((item) => (
             <button 
               key={item.label} 
               onClick={() => handleNavClick(item)}
               onMouseEnter={playHover}
-              className={`text-sm font-medium transition-colors focus:outline-none ${currentPage === item.id ? 'text-black dark:text-white font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'}`}
+              className={`text-xs md:text-sm font-medium transition-colors focus:outline-none whitespace-nowrap ${currentPage === item.id ? 'text-black dark:text-white font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'}`}
             >
               {item.label}
             </button>
           ))}
-          <div className="w-px h-4 bg-gray-300 dark:bg-gray-700 mx-1"></div>
+          <div className="w-px h-3 md:h-4 bg-gray-300 dark:bg-gray-700 mx-1 shrink-0"></div>
           <button
              onClick={() => { playClick(); onNavigate('contact'); }}
              onMouseEnter={playHover}
-             className={`text-sm font-medium transition-colors focus:outline-none ${currentPage === 'contact' ? 'text-black dark:text-white font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'}`}
+             className={`text-xs md:text-sm font-medium transition-colors focus:outline-none whitespace-nowrap ${currentPage === 'contact' ? 'text-black dark:text-white font-bold' : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'}`}
           >
             Contact
           </button>
         </div>
 
         {/* Right: Actions */}
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-sm rounded-full h-12 px-2 flex items-center gap-1 transition-all duration-500">
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-sm rounded-full h-10 md:h-12 px-2 flex items-center gap-1 transition-all duration-500">
             
             {/* Dark Mode Toggle */}
             <button
@@ -109,13 +109,14 @@ const Navbar: React.FC<Props> = ({ onNavigate, currentPage, isDarkMode, onToggle
             <button 
                 onClick={() => { playClick(); onOpenCallModal(); }}
                 onMouseEnter={playHover}
-                className="bg-black dark:bg-white text-white dark:text-black px-4 py-1.5 rounded-full text-xs font-bold hover:opacity-80 transition-opacity hidden sm:flex items-center gap-2 ml-1"
+                className="bg-black dark:bg-white text-white dark:text-black px-3 md:px-4 py-1.5 rounded-full text-xs font-bold hover:opacity-80 transition-opacity flex items-center gap-2 ml-1 whitespace-nowrap"
             >
-                <div className="relative flex h-3 w-3">
+                <div className="relative flex h-2 w-2 md:h-3 md:w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                  <span className="relative inline-flex rounded-full h-full w-full bg-red-500"></span>
                 </div>
-                <span>Speak With Spell</span>
+                <span className="hidden sm:inline">Speak With Spell</span>
+                <span className="sm:hidden">Speak</span>
             </button>
         </div>
       </div>

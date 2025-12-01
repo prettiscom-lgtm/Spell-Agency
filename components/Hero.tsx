@@ -1,6 +1,5 @@
 
 import React, { useRef, useEffect, useState } from 'react';
-import GlitchText from './ui/GlitchText';
 
 const Hero: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -96,7 +95,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[85vh] flex flex-col items-center justify-center z-10 overflow-hidden pb-20">
+    <section className="relative w-full min-h-[85vh] flex flex-col items-center justify-center z-10 overflow-hidden pb-20 pt-20 md:pt-0">
       
       {/* Interactive Neural Background */}
       <canvas 
@@ -106,14 +105,14 @@ const Hero: React.FC = () => {
 
       {/* Main Headline */}
       <div className="text-center px-4 relative z-10 pointer-events-none mt-10">
-        <h1 className="font-sans font-extrabold text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[1.1] text-black dark:text-white max-w-7xl mx-auto tracking-tighter transition-colors duration-500">
+        <h1 className="font-sans font-extrabold text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-[1.1] text-black dark:text-white max-w-7xl mx-auto tracking-tighter transition-colors duration-500">
           
-          <div className="block mb-2 md:mb-4">
-             <GlitchText text="Let AI handle" speed={100} />
+          <div className="block mb-2 md:mb-4 text-black dark:text-white">
+             Let AI Handle
           </div>
 
           {/* Animated Second Line */}
-          <div className="relative h-[1.1em] overflow-hidden">
+          <div className="relative h-[1.2em] overflow-hidden">
              {words.map((word, index) => (
                <span 
                 key={word}
@@ -130,20 +129,20 @@ const Hero: React.FC = () => {
 
         </h1>
         
-        <div className="mt-12 opacity-0 animate-slideUp space-y-2" style={{ animationDelay: '600ms' }}>
-            <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-200 font-medium tracking-tight">
+        <div className="mt-8 md:mt-12 opacity-0 animate-slideUp space-y-4 md:space-y-2 px-4" style={{ animationDelay: '600ms' }}>
+            <p className="text-lg md:text-2xl text-gray-800 dark:text-gray-200 font-medium tracking-tight">
                We engineer the neural architecture for next-gen enterprises.
             </p>
-            <p className="text-base md:text-lg text-gray-500 dark:text-gray-500 font-normal">
+            <p className="text-sm md:text-lg text-gray-500 dark:text-gray-500 font-normal">
                Deploy autonomous agents that scale revenue, not headcount.
             </p>
         </div>
       </div>
       
       {/* Scroll indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 animate-fadeIn" style={{ animationDelay: '1000ms' }}>
+      <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 animate-fadeIn" style={{ animationDelay: '1000ms' }}>
           <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Explore Capabilities</span>
-          <div className="w-px h-12 bg-gradient-to-b from-gray-300/0 via-gray-400 to-gray-300/0 dark:from-brand-blue/0 dark:via-brand-blue dark:to-brand-blue/0"></div>
+          <div className="w-px h-8 md:h-12 bg-gradient-to-b from-gray-300/0 via-gray-400 to-gray-300/0 dark:from-brand-blue/0 dark:via-brand-blue dark:to-brand-blue/0"></div>
       </div>
     </section>
   );
