@@ -3,7 +3,7 @@ import React from 'react';
 export interface NavItem {
   label: string;
   id: string;
-  type: 'link' | 'scroll'; // Added to distinguish between page nav and scroll nav
+  type: 'link' | 'scroll';
 }
 
 export interface Feature {
@@ -23,12 +23,12 @@ export interface Slide {
   layout: SlideLayout;
   title: string;
   subtitle?: string;
-  content?: string; // Main paragraph text
+  content?: string; 
   bullets?: string[];
-  statValue?: string; // e.g. "90%"
-  statLabel?: string; // e.g. "Reduction in wait time"
-  quoteAuthor?: string; // For quote layout
-  imagePrompt?: string; // Description for the visual placeholder
+  statValue?: string;
+  statLabel?: string;
+  quoteAuthor?: string;
+  imagePrompt?: string;
 }
 
 export interface PresentationData {
@@ -53,11 +53,11 @@ export interface CaseStudyData {
 export type Sentiment = 'neutral' | 'excited' | 'skeptical' | 'happy' | 'confused' | 'curious';
 
 export interface Psychometrics {
-  userMood: string; // e.g. "Curious", "Frustrated"
-  personalityType: string; // e.g. "Visionary", "Pragmatist"
-  engagementLevel: number; // 0-100
+  userMood: string; 
+  personalityType: string;
+  engagementLevel: number; 
   sentiment: Sentiment;
-  harryThought: string; // Internal monologue / thought about the user
+  harryThought: string;
 }
 
 export interface ChatMessage {
@@ -82,3 +82,9 @@ export interface AIResponse {
 }
 
 export type Page = 'home' | 'contact' | 'privacy' | 'terms' | 'services';
+
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  initialMessage?: string; // Added for Hero input
+}
